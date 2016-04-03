@@ -1,0 +1,54 @@
+<script language="javascript">
+function SelectRedirect(section){
+
+switch(document.getElementById('sl1').value)
+{
+default:
+window.location="index?item="+section;
+break;
+}
+}
+function Go_error(){
+alert('Please add any item before proceeding to the Cart.');
+}
+</script>
+<div class="container-fluid">
+  <h2 class="pull-left">Items:</h2>
+  
+  <div class="form-group col-xs-2 pull-right">
+  <label>Display only:
+  <form onsubmit="return mysubmit();"> 
+	<select name="section" class="form-control" id="sl1" onChange="SelectRedirect(section.value)">
+		<?php
+		$item = new item();
+		?>
+	</select>
+	</form>
+	</label>
+   </div>     
+  <h2 class="text-center pull-right">Money: <?php echo $_SESSION['money'];?></h2>   
+  <table class="table table-hover table-bordered text-center">
+    <thead>
+      <tr>
+        <th class="text-center">Item name</th>
+        <th class="text-center">Price</th>
+        <th class="text-center">Type</th>
+        <th class="text-center">Weight</th>
+        <th class="text-center">Add</th>
+      </tr>
+    </thead>
+    <tbody>
+      <?php
+		$item->avabile_item($_GET['item']);
+	  ?>
+	 </tbody>
+	</table>
+</div>
+<div class="container-fluid pull-right">
+<?php
+if(isset($_SESSION['basket'])){
+echo "<a href=\"card\"><button class=\"btn btn-default\">Go to Card</button></a>";
+}else{
+echo "<button onclick='Go_error()' class=\"btn btn-default\">Go to Card</button>";
+}?>
+</div>

@@ -1,4 +1,4 @@
-# Oldcountry simple web shop
+# Mvc simple web shop
 
 Version 1.1
 
